@@ -54,7 +54,7 @@ class TestResolv < Minitest::Test
 
   def test_resolv_address_to_name
 
-    assert_equal(RELATIVE_NAME, Dnsruby::Resolv.getname(IPV4_ADDR).to_s)
+    assert_equal(ABSOLUTE_NAME, Dnsruby::Resolv.getname(IPV4_ADDR).to_s)
 
     assert_raises(Dnsruby::Resolv::ResolvError) do
       Dnsruby::Resolv.getname(RELATIVE_NAME)
@@ -62,8 +62,8 @@ class TestResolv < Minitest::Test
 
     names = Dnsruby::Resolv.getnames(IPV4_ADDR)
     assert_equal(1, names.size)
-    assert_equal(RELATIVE_NAME, names.first.to_s)
-    Dnsruby::Resolv.each_name(IPV4_ADDR) { |name| assert_equal(RELATIVE_NAME, name.to_s)}
+    assert_equal(ABSOLUTE_NAME, names.first.to_s)
+    Dnsruby::Resolv.each_name(IPV4_ADDR) { |name| assert_equal(ABSOLUTE_NAME, name.to_s)}
   end
 
   def test_resolv_address_to_address
